@@ -4,52 +4,182 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Termos - FATO std</title>
-    <meta name="description" content="Termos de uso da FATO std.">
+    <meta name="description" content="Termos de uso da FATO std. Conheça as regras e condições para utilização do nosso site e serviços.">
     <link rel="canonical" href="https://fatostd.com.br/terms.html">
     <meta name="author" content="FATO std">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' https://fonts.googleapis.com https://cdn.tailwindcss.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://placehold.co data:;">
-    <script src="./assets/tailwind-config.js" defer></script>
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.tailwindcss.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdn.tailwindcss.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://placehold.co data: blob:;">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" as="style" onload="this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="./assets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'fato-purple': '#5b057f',
+                        'fato-light': '#f6f2f9'
+                    }
+                }
+            }
+        };
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="./assets/img/FATO REDUZIDO 16x16.svg">
 </head>
-<body class="font-sans antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-[#f6f2f9]">
-    <header class="bg-white dark:bg-gray-900 p-4 shadow-lg sticky top-0 z-50">
+<body class="font-sans antialiased bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900 text-gray-900 dark:text-[#f6f2f9]">
+    <header class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md p-4 shadow-xl sticky top-0 z-50 border-b border-gray-200/50 dark:border-gray-800/50">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-gray-900 dark:text-[#f6f2f9] text-2xl font-bold rounded-md p-2" aria-label="Página inicial da FATO std">
-                <img src="./assets/img/FATO branco vazado.svg" alt="logo do estudio de jogos FATO" class="h-10 w-auto">
+            <a href="index.html" class="text-gray-900 dark:text-[#f6f2f9] text-xl md:text-2xl font-bold rounded-md p-2 transition-all hover:scale-105" aria-label="Página inicial da FATO std">
+                <img src="./assets/img/FATO.svg" alt="logo do estudio de jogos FATO" class="h-8 md:h-10 w-auto dark:hidden">
+                <img src="./assets/img/FATO branco vazado.svg" alt="logo do estudio de jogos FATO" class="h-8 md:h-10 w-auto hidden dark:block">
             </a>
-            <nav class="hidden md:flex space-x-6">
-                <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] transition duration-300 ease-in-out rounded-md p-2">Início</a>
-                <a href="privacy.html" class="text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] transition duration-300 ease-in-out rounded-md p-2">Privacidade</a>
-                <a href="terms.html" class="text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] transition duration-300 ease-in-out rounded-md p-2">Termos</a>
+            <nav class="hidden md:flex space-x-2">
+                <a href="index.html" class="text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] transition duration-300 ease-in-out rounded-lg px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800">Início</a>
+                <a href="privacy.html" class="text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] transition duration-300 ease-in-out rounded-lg px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800">Privacidade</a>
+                <a href="terms.html" class="text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] transition duration-300 ease-in-out rounded-lg px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800">Termos</a>
             </nav>
+            <div class="hidden md:flex items-center space-x-1">
+                <button id="theme-toggle" class="text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] focus:outline-none p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all" aria-label="Mudar tema" title="Mudar tema">
+                    <span id="theme-toggle-icon" aria-hidden="true">🌙</span>
+                </button>
+                <button id="lang-toggle" class="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] focus:outline-none px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all" aria-label="Mudar idioma" title="Mudar idioma">PT</button>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-900 dark:text-[#f6f2f9] focus:outline-none p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" aria-label="Abrir menu mobile" aria-expanded="false" aria-controls="mobile-menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
+        <nav id="mobile-menu" class="mobile-menu hidden flex-col items-center mt-2 space-y-2 md:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-b-xl shadow-lg">
+            <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] transition duration-300 ease-in-out rounded-lg px-4 py-3 w-full text-center hover:bg-gray-100 dark:hover:bg-gray-700">Início</a>
+            <a href="privacy.html" class="text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] transition duration-300 ease-in-out rounded-lg px-4 py-3 w-full text-center hover:bg-gray-100 dark:hover:bg-gray-700">Privacidade</a>
+            <a href="terms.html" class="text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] transition duration-300 ease-in-out rounded-lg px-4 py-3 w-full text-center hover:bg-gray-100 dark:hover:bg-gray-700">Termos</a>
+            <div class="flex items-center justify-center space-x-2 pt-2 pb-4">
+                <button id="theme-toggle-mobile" class="text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] focus:outline-none p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all" aria-label="Mudar tema" title="Mudar tema">
+                    <span id="theme-toggle-mobile-icon" aria-hidden="true">🌙</span>
+                </button>
+                <button id="lang-toggle-mobile" class="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] focus:outline-none px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all" aria-label="Mudar idioma" title="Mudar idioma">PT</button>
+            </div>
+        </nav>
     </header>
 
-    <main class="py-20">
-        <div class="container mx-auto px-4 max-w-3xl">
-            <h1 class="text-4xl font-bold mb-6">Termos de Uso</h1>
-            <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
-                Este é um exemplo de página de termos de uso. Aqui você pode descrever as regras e condições para utilização do site e serviços.
-            </p>
-            <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-                Ao utilizar este site, você concorda com as condições descritas aqui. Caso não concorde, por favor não utilize nossos serviços.
-            </p>
+    <main class="py-12 md:py-20 w-full">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl p-6 md:p-10 shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+                <h1 class="text-3xl md:text-4xl font-bold mb-8">Termos de Uso</h1>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-8">Última atualização: <span id="update-date">13 de março de 2026</span></p>
+                
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4 text-[#5b057f] dark:text-[#f6f2f9]">1. Aceitação dos Termos</h2>
+                    <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300">
+                        Ao acessar e utilizar o site da <strong>FATO std</strong>, você aceita e concorda em estar vinculado a estes Termos de Uso. Se você não concorda com qualquer parte destes termos, não utilize nosso site.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4 text-[#5b057f] dark:text-[#f6f2f9]">2. Uso do Site</h2>
+                    <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300 mb-4">
+                        Você concorda em usar este site apenas para fins legais e de maneira que não viole os direitos de outros ou restrinja o uso do site por terceiros. É proibido:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 ml-4">
+                        <li>Utilizar o site para atividades ilegais ou não autorizadas.</li>
+                        <li>Tentar acessar sistemas, redes ou dados sem autorização.</li>
+                        <li>Interferir ou interromper o funcionamento do site.</li>
+                        <li>Transmitir vírus, malware ou qualquer código de natureza destrutiva.</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4 text-[#5b057f] dark:text-[#f6f2f9]">3. Propriedade Intelectual</h2>
+                    <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300 mb-4">
+                        Todo o conteúdo deste site, incluindo textos, imagens, logotipos, jogos e materiais, é de propriedade da FATO std ou de seus licenciadores e está protegido por leis de direitos autorais e propriedade intelectual.
+                    </p>
+                    <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300">
+                        Você não pode reproduzir, distribuir, modificar ou criar trabalhos derivados sem autorização prévia por escrito.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4 text-[#5b057f] dark:text-[#f6f2f9]">4. Jogos e Serviços</h2>
+                    <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300 mb-4">
+                        A FATO std desenvolve e disponibiliza jogos independentes. Os jogos podem:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 ml-4">
+                        <li>Estar em desenvolvimento ou versão beta.</li>
+                        <li>Conter bugs ou erros não intencionais.</li>
+                        <li>Ser modificados ou descontinuados a qualquer momento.</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4 text-[#5b057f] dark:text-[#f6f2f9]">5. Isenção de Responsabilidade</h2>
+                    <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300">
+                        O site e os jogos são fornecidos "como estão", sem garantias de qualquer tipo. A FATO std não se responsabiliza por danos diretos, indiretos ou consequenciais resultantes do uso ou incapacidade de usar o site ou jogos.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4 text-[#5b057f] dark:text-[#f6f2f9]">6. Links para Terceiros</h2>
+                    <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300">
+                        Nosso site pode conter links para sites de terceiros. Não temos controle sobre esses sites e não nos responsabilizamos por seu conteúdo ou práticas de privacidade.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4 text-[#5b057f] dark:text-[#f6f2f9]">7. Modificações dos Termos</h2>
+                    <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300">
+                        Reservamo-nos o direito de modificar estes termos a qualquer momento. As alterações entram em vigor imediatamente após a publicação no site. O uso continuado do site após modificações constitui aceitação dos novos termos.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4 text-[#5b057f] dark:text-[#f6f2f9]">8. Rescisão</h2>
+                    <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300">
+                        Podemos suspender ou encerrar seu acesso ao site a qualquer momento, sem aviso prévio, por violação destes termos ou por qualquer outro motivo.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4 text-[#5b057f] dark:text-[#f6f2f9]">9. Lei Aplicável</h2>
+                    <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300">
+                        Estes termos são regidos pelas leis do Brasil. Qualquer disputa será resolvida nos tribunais competentes.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4 text-[#5b057f] dark:text-[#f6f2f9]">10. Contato</h2>
+                    <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300">
+                        Para dúvidas sobre estes Termos de Uso, entre em contato conosco através do formulário em nosso site ou pelo e-mail <a href="mailto:contato@fatostd.com.br" class="text-[#5b057f] dark:text-[#f6f2f9] underline hover:no-underline">contato@fatostd.com.br</a>.
+                    </p>
+                </section>
+            </div>
         </div>
     </main>
 
-    <footer class="bg-white dark:bg-gray-900 py-8">
+    <footer class="bg-gray-900 dark:bg-black text-gray-300 py-10 border-t border-gray-800">
         <div class="container mx-auto text-center px-4">
-            <p class="text-gray-700 dark:text-gray-300">&copy; <span id="current-year"></span> FATO std. Todos os direitos reservados.</p>
-            <div class="flex justify-center space-x-6 mt-4">
-                <a href="privacy.html" class="text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] transition">Privacidade</a>
-                <a href="terms.html" class="text-gray-700 dark:text-gray-300 hover:text-[#5b057f] dark:hover:text-[#f6f2f9] transition">Termos</a>
+            <div class="flex justify-center items-center mb-6">
+                <img src="./assets/img/FATO branco vazado.svg" alt="FATO std" class="h-8 w-auto opacity-80">
+            </div>
+            <p class="text-sm">&copy; <span id="current-year"></span> FATO std. Todos os direitos reservados.</p>
+            <div class="flex justify-center space-x-6 mt-4 text-sm">
+                <a href="privacy.html" class="hover:text-[#f6f2f9] hover:underline transition duration-300 ease-in-out">Privacidade</a>
+                <span class="text-gray-600">•</span>
+                <a href="terms.html" class="hover:text-[#f6f2f9] hover:underline transition duration-300 ease-in-out">Termos</a>
             </div>
         </div>
     </footer>
 
-    <script src="./assets/controller.js" defer></script>
+    <script src="./assets/controller.js"></script>
 </body>
 </html>

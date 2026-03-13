@@ -5,24 +5,38 @@ document.addEventListener('DOMContentLoaded', () => {
         currentYearSpan.textContent = new Date().getFullYear();
     }
 
-    // Configurações de tema e idioma
+    // Elementos do tema
     const themeToggle = document.getElementById('theme-toggle');
     const themeToggleMobile = document.getElementById('theme-toggle-mobile');
     const langToggle = document.getElementById('lang-toggle');
     const langToggleMobile = document.getElementById('lang-toggle-mobile');
+    const themeToggleIcon = document.getElementById('theme-toggle-icon');
+    const themeToggleMobileIcon = document.getElementById('theme-toggle-mobile-icon');
+
+    // Atualiza o ícone do tema ao carregar
+    function updateThemeIcons() {
+        const isDark = document.documentElement.classList.contains('dark');
+        const icon = isDark ? '☀️' : '🌙';
+        if (themeToggleIcon) themeToggleIcon.textContent = icon;
+        if (themeToggleMobileIcon) themeToggleMobileIcon.textContent = icon;
+    }
 
     const translations = {
         pt: {
             'nav.home': 'Início',
             'nav.games': 'Jogos',
-            'nav.about': 'Sobre Nós',
+            'nav.about': 'Sobre',
             'nav.contact': 'Contato',
             'hero.title': 'Crie Mundos, Conte Histórias, Jogue o Futuro.',
             'hero.subtitle': 'FATO std é um estúdio de jogos dedicado a experiências imersivas e inovadoras.',
             'hero.cta': 'Explore Nossos Jogos',
-            'games.title': 'Nosso Jogo',
-            'games.card.title': 'IES Simulator',
-            'games.card.description': 'Viva a vida de um técnico de TI aprendendo um pouco cada dia sobre o mundo da tecnologia e informação.',
+            'games.title': 'Nossos Jogos',
+            'games.card1.title': 'IES Simulator',
+            'games.card1.description': 'Viva a vida de um técnico de TI aprendendo um pouco cada dia sobre o mundo da tecnologia e informação.',
+            'games.card2.title': 'Tales Unbound',
+            'games.card2.description': 'Uma aventura épica onde histórias ganham vida e cada escolha molda o destino de mundos imaginários.',
+            'games.card3.title': 'Ponto de Alerta',
+            'games.card3.description': 'Um thriller de suspense onde cada decisão conta. Descubra a verdade por trás do mistério.',
             'games.card.cta': 'Saiba Mais',
             'about.title': 'Sobre Nós',
             'about.text': 'Na FATO std, somos apaixonados por criar experiências de jogo inovadoras e memoráveis. Nossa equipe de desenvolvedores, artistas e designers talentosos trabalha incansavelmente para dar vida a mundos imaginativos e histórias cativantes. Acreditamos que os jogos têm o poder de inspirar, conectar e entreter, e nos esforçamos para superar os limites da criatividade em cada projeto que assumimos.',
@@ -51,9 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
             'hero.title': 'Create Worlds, Tell Stories, Play the Future.',
             'hero.subtitle': 'FATO std is an indie game studio focused on immersive and innovative experiences.',
             'hero.cta': 'Explore Our Games',
-            'games.title': 'Our Game',
-            'games.card.title': 'IES Simulator',
-            'games.card.description': 'Live the life of an IT technician learning a little each day about the world of technology and information.',
+            'games.title': 'Our Games',
+            'games.card1.title': 'IES Simulator',
+            'games.card1.description': 'Live the life of an IT technician learning a little each day about the world of technology and information.',
+            'games.card2.title': 'Tales Unbound',
+            'games.card2.description': 'An epic adventure where stories come to life and every choice shapes the destiny of imaginary worlds.',
+            'games.card3.title': 'Alert Point',
+            'games.card3.description': 'A suspense thriller where every decision matters. Discover the truth behind the mystery.',
             'games.card.cta': 'Learn More',
             'about.title': 'About Us',
             'about.text': 'At FATO std, we are passionate about creating innovative and memorable game experiences. Our team of developers, artists and designers works tirelessly to bring imaginative worlds and captivating stories to life. We believe games have the power to inspire, connect and entertain, and we strive to push the limits of creativity in every project we take on.',
@@ -107,43 +125,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function setTheme(theme) {
         const root = document.documentElement;
-        const isDark = theme === 'dark';
-
-        if (isDark) {
+        
+        if (theme === 'dark') {
             root.classList.add('dark');
             localStorage.setItem('theme', 'dark');
         } else {
             root.classList.remove('dark');
             localStorage.setItem('theme', 'light');
         }
-
-        const icon = isDark ? '☀️' : '🌙';
-        if (themeToggleIcon) themeToggleIcon.textContent = icon;
-        if (themeToggleMobileIcon) themeToggleMobileIcon.textContent = icon;
-
-        const currentLang = document.documentElement.lang.startsWith('en') ? 'en' : 'pt';
-        const dictionary = translations[currentLang] || translations.pt;
-        const ariaLabel = dictionary['aria.themeToggle'] || 'Toggle theme';
-        if (themeToggle) themeToggle.setAttribute('aria-label', ariaLabel);
-        if (themeToggleMobile) themeToggleMobile.setAttribute('aria-label', ariaLabel);
-    }
-
-    const themeToggleIcon = document.getElementById('theme-toggle-icon');
-    const themeToggleMobileIcon = document.getElementById('theme-toggle-mobile-icon');
-
-    function getSavedTheme() {
-        return localStorage.getItem('theme');
+        
+        updateThemeIcons();
     }
 
     function getSavedLanguage() {
         return localStorage.getItem('lang');
-    }
-
-    function initTheme() {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-        setTheme(theme);
     }
 
     function initLanguage() {
@@ -155,8 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function toggleTheme() {
-        const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-        const next = current === 'dark' ? 'light' : 'dark';
+        const isDark = document.documentElement.classList.contains('dark');
+        const next = isDark ? 'light' : 'dark';
         setTheme(next);
     }
 
@@ -167,20 +162,21 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTranslations(next);
     }
 
+    // Event listeners para tema
     if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
     if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
     if (langToggle) langToggle.addEventListener('click', toggleLanguage);
     if (langToggleMobile) langToggleMobile.addEventListener('click', toggleLanguage);
 
-    initTheme();
+    // Inicializa idioma e ícones
     initLanguage();
+    updateThemeIcons();
 
-    // JavaScript para rolagem suave da navegação
+    // Rolagem suave da navegação
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
 
-            // Permite que links genéricos (href="#") funcionem normalmente
             if (!targetId || targetId === '#') {
                 return;
             }
@@ -195,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            // Fecha o menu mobile após clicar em um link (se estiver aberto)
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenu && mobileMenu.classList.contains('flex')) {
                 mobileMenu.classList.remove('flex');
@@ -204,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // JavaScript para alternar o menu mobile
+    // Menu mobile
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -212,11 +207,9 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuButton.addEventListener('click', function() {
             const isOpen = !mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('flex');
-
             mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
         });
 
-        // Fecha o menu mobile ao clicar fora dele
         document.addEventListener('click', function (event) {
             const isClickInside = mobileMenu.contains(event.target) || mobileMenuButton.contains(event.target);
             if (!isClickInside && mobileMenu.classList.contains('flex')) {
@@ -226,4 +219,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Partículas da seção hero
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        if (!particlesContainer) return;
+
+        const particleCount = 20;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    createParticles();
 });

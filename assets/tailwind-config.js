@@ -1,7 +1,13 @@
-// Tailwind CSS configuration file (loaded before Tailwind CDN)
-// Ensures Tailwind uses class-based dark mode (requires tailwind v3+)
-if (typeof tailwind !== 'undefined') {
-    tailwind.config = {
-        darkMode: 'class'
-    };
-}
+// Tailwind CSS configuration for dark mode
+window.tailwind = window.tailwind || {};
+window.tailwind.config = {
+    darkMode: 'class',
+    theme: {
+        extend: {
+            colors: {
+                'fato-purple': '#5b057f',
+                'fato-light': '#f6f2f9'
+            }
+        }
+    }
+};

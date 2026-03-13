@@ -7,24 +7,48 @@
     <meta name="description" content="Obrigado por entrar em contato com a FATO std! Sua mensagem foi recebida com sucesso.">
     <link rel="canonical" href="https://fatostd.com.br/obrigado.html">
     <meta name="author" content="FATO std">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' https://fonts.googleapis.com https://cdn.tailwindcss.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://placehold.co data:;">
-    <script src="./assets/tailwind-config.js" defer></script>
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.tailwindcss.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdn.tailwindcss.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://placehold.co data: blob:;">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" as="style" onload="this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="./assets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'fato-purple': '#5b057f',
+                        'fato-light': '#f6f2f9'
+                    }
+                }
+            }
+        };
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="./assets/img/FATO REDUZIDO 16x16.svg">
 </head>
-<body class="font-sans antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-[#f6f2f9] flex items-center justify-center min-h-screen">
-    <div class="container mx-auto text-center px-4 py-16 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl">
-        <h1 class="text-5xl font-extrabold mb-6" data-i18n="thanks.title">Obrigado!</h1>
-        <p class="text-lg md:text-xl mb-8" data-i18n="thanks.message">
+<body class="font-sans antialiased bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900 text-gray-900 dark:text-[#f6f2f9] flex items-center justify-center min-h-screen">
+    <div class="container mx-auto text-center px-4 py-16 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-2xl max-w-2xl border border-gray-200/50 dark:border-gray-700/50">
+        <img src="./assets/img/FATO.svg" alt="FATO std" class="h-16 w-auto mx-auto mb-6 dark:hidden">
+        <img src="./assets/img/FATO branco vazado.svg" alt="FATO std" class="h-16 w-auto mx-auto mb-6 hidden dark:block">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6" data-i18n="thanks.title">Obrigado!</h1>
+        <p class="text-lg md:text-xl mb-8 text-gray-700 dark:text-gray-300" data-i18n="thanks.message">
             Sua mensagem foi enviada com sucesso para a FATO std.
             Entraremos em contato em breve!
         </p>
-        <a href="index.html" class="bg-[#5b057f] text-[#f6f2f9] hover:bg-[#4a0466] font-bold py-3 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out inline-block" data-i18n="thanks.button">
+        <a href="index.html" class="bg-gradient-to-r from-[#5b057f] to-[#7c1a9e] text-[#f6f2f9] hover:from-[#4a0466] hover:to-[#5b057f] font-bold py-3 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out inline-block" data-i18n="thanks.button">
             Voltar para a Página Inicial
         </a>
     </div>
-    <script src="./assets/controller.js" defer></script>
+    <script src="./assets/controller.js"></script>
 </body>
 </html>
