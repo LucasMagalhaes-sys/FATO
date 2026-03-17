@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'nav.games': 'Jogos',
             'nav.about': 'Sobre',
             'nav.contact': 'Contato',
+            'nav.home.title': 'Ir para o início',
+            'nav.games.title': 'Ver nossos jogos',
+            'nav.about.title': 'Saiba mais sobre nós',
+            'nav.contact.title': 'Entre em contato conosco',
             'hero.title': 'Crie Mundos, Conte Histórias, Jogue o Futuro.',
             'hero.subtitle': 'FATO std é um estúdio de jogos dedicado a experiências imersivas e inovadoras.',
             'hero.cta': 'Explore Nossos Jogos',
@@ -38,6 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
             'games.card3.title': 'Ponto de Alerta',
             'games.card3.description': 'Um thriller de suspense onde cada decisão conta. Descubra a verdade por trás do mistério.',
             'games.card.cta': 'Saiba Mais',
+            'games.card1.cta.title': 'Jogar IES Simulator no itch.io',
+            'games.card2.cta.title': 'Jogar Tales Unbound no itch.io',
+            'games.card3.cta.title': 'Jogar Ponto de Alerta no itch.io',
             'about.title': 'Sobre Nós',
             'about.text': 'Na FATO std, somos apaixonados por criar experiências de jogo inovadoras e memoráveis. Nossa equipe de desenvolvedores, artistas e designers talentosos trabalha incansavelmente para dar vida a mundos imaginativos e histórias cativantes. Acreditamos que os jogos têm o poder de inspirar, conectar e entreter, e nos esforçamos para superar os limites da criatividade em cada projeto que assumimos.',
             'contact.title': 'Entre em Contato',
@@ -51,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
             'footer.privacy': 'Privacidade',
             'footer.terms': 'Termos',
             'footer.rights': 'Todos os direitos reservados.',
+            'footer.instagram.title': 'Siga a FATO std no Instagram - @fato_studios',
+            'footer.itchio.title': 'Visite a FATO std no itch.io - Baixe nossos jogos gratuitamente',
             'thanks.title': 'Obrigado!',
             'thanks.message': 'Sua mensagem foi enviada com sucesso para a FATO std. Entraremos em contato em breve!',
             'thanks.button': 'Voltar para a Página Inicial',
@@ -62,6 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'nav.games': 'Games',
             'nav.about': 'About',
             'nav.contact': 'Contact',
+            'nav.home.title': 'Go to home',
+            'nav.games.title': 'View our games',
+            'nav.about.title': 'Learn more about us',
+            'nav.contact.title': 'Get in touch with us',
             'hero.title': 'Create Worlds, Tell Stories, Play the Future.',
             'hero.subtitle': 'FATO std is an indie game studio focused on immersive and innovative experiences.',
             'hero.cta': 'Explore Our Games',
@@ -73,6 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
             'games.card3.title': 'Alert Point',
             'games.card3.description': 'A suspense thriller where every decision matters. Discover the truth behind the mystery.',
             'games.card.cta': 'Learn More',
+            'games.card1.cta.title': 'Play IES Simulator on itch.io',
+            'games.card2.cta.title': 'Play Tales Unbound on itch.io',
+            'games.card3.cta.title': 'Play Alert Point on itch.io',
             'about.title': 'About Us',
             'about.text': 'At FATO std, we are passionate about creating innovative and memorable game experiences. Our team of developers, artists and designers works tirelessly to bring imaginative worlds and captivating stories to life. We believe games have the power to inspire, connect and entertain, and we strive to push the limits of creativity in every project we take on.',
             'contact.title': 'Get in Touch',
@@ -86,6 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
             'footer.privacy': 'Privacy',
             'footer.terms': 'Terms',
             'footer.rights': 'All rights reserved.',
+            'footer.instagram.title': 'Follow FATO std on Instagram - @fato_studios',
+            'footer.itchio.title': 'Visit FATO std on itch.io - Download our games for free',
             'thanks.title': 'Thank you!',
             'thanks.message': 'Your message has been successfully sent to FATO std. We will contact you shortly!',
             'thanks.button': 'Back to Home',
@@ -97,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyTranslations(lang) {
         const dictionary = translations[lang] || translations.pt;
 
+        // Traduzir conteúdo de texto
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             const value = dictionary[key];
@@ -105,11 +124,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Traduzir placeholders
         document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
             const key = el.getAttribute('data-i18n-placeholder');
             const value = dictionary[key];
             if (typeof value === 'string') {
                 el.setAttribute('placeholder', value);
+            }
+        });
+
+        // Traduzir atributos title
+        document.querySelectorAll('[data-i18n-title]').forEach(el => {
+            const key = el.getAttribute('data-i18n-title');
+            const value = dictionary[key];
+            if (typeof value === 'string') {
+                el.setAttribute('title', value);
             }
         });
 
@@ -239,4 +268,146 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     createParticles();
+
+    // Carousel functionality for games section
+    function initGamesCarousel() {
+        const carousel = document.getElementById('games-carousel');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+        const indicatorsContainer = document.getElementById('carousel-indicators');
+
+        if (!carousel || !indicatorsContainer) return;
+
+        const articles = carousel.querySelectorAll('article');
+        if (articles.length === 0) return;
+
+        let currentIndex = 0;
+        let itemsPerView = getItemsPerView();
+
+        function getItemsPerView() {
+            if (window.innerWidth >= 1024) return 3;
+            if (window.innerWidth >= 768) return 2;
+            return 1;
+        }
+
+        function updateCarousel() {
+            const totalItems = articles.length;
+            const maxIndex = Math.max(0, totalItems - itemsPerView);
+
+            // Update indicators
+            updateIndicators();
+
+            // Show/hide navigation buttons
+            if (prevBtn && nextBtn) {
+                if (currentIndex > 0) {
+                    prevBtn.style.opacity = '1';
+                    prevBtn.style.pointerEvents = 'auto';
+                } else {
+                    prevBtn.style.opacity = '0';
+                    prevBtn.style.pointerEvents = 'none';
+                }
+
+                if (currentIndex < maxIndex) {
+                    nextBtn.style.opacity = '1';
+                    nextBtn.style.pointerEvents = 'auto';
+                } else {
+                    nextBtn.style.opacity = '0';
+                    nextBtn.style.pointerEvents = 'none';
+                }
+            }
+        }
+
+        function createIndicators() {
+            indicatorsContainer.innerHTML = '';
+            const totalIndicators = Math.ceil(articles.length / itemsPerView);
+
+            for (let i = 0; i < totalIndicators; i++) {
+                const indicator = document.createElement('button');
+                indicator.className = 'carousel-indicator';
+                if (i === 0) indicator.classList.add('active');
+                indicator.setAttribute('aria-label', `Ir para página ${i + 1}`);
+                indicator.addEventListener('click', () => {
+                    currentIndex = i * itemsPerView;
+                    scrollToIndex(currentIndex);
+                });
+                indicatorsContainer.appendChild(indicator);
+            }
+        }
+
+        function updateIndicators() {
+            const indicators = indicatorsContainer.querySelectorAll('.carousel-indicator');
+            const activeIndex = Math.floor(currentIndex / itemsPerView);
+
+            indicators.forEach((indicator, index) => {
+                if (index === activeIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        function scrollToIndex(index) {
+            const article = articles[index];
+            if (!article) return;
+
+            const carouselWidth = carousel.offsetWidth;
+            const articleWidth = article.offsetWidth;
+            const gap = parseFloat(getComputedStyle(carousel).gap) || 0;
+            const scrollPosition = index * (articleWidth + gap);
+
+            carousel.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        function handleScroll() {
+            const scrollLeft = carousel.scrollLeft;
+            const articleWidth = articles[0]?.offsetWidth || 0;
+            const gap = parseFloat(getComputedStyle(carousel).gap) || 0;
+            const newIndex = Math.round(scrollLeft / (articleWidth + gap));
+
+            if (newIndex !== currentIndex && newIndex >= 0 && newIndex < articles.length) {
+                currentIndex = newIndex;
+                updateCarousel();
+            }
+        }
+
+        // Event listeners for navigation buttons
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                const newIndex = Math.max(0, currentIndex - itemsPerView);
+                currentIndex = newIndex;
+                scrollToIndex(newIndex);
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                const maxIndex = Math.max(0, articles.length - itemsPerView);
+                const newIndex = Math.min(maxIndex, currentIndex + itemsPerView);
+                currentIndex = newIndex;
+                scrollToIndex(newIndex);
+            });
+        }
+
+        // Scroll event listener
+        carousel.addEventListener('scroll', handleScroll);
+
+        // Resize event listener
+        window.addEventListener('resize', () => {
+            itemsPerView = getItemsPerView();
+            currentIndex = 0;
+            createIndicators();
+            updateCarousel();
+        });
+
+        // Initialize
+        createIndicators();
+        updateCarousel();
+    }
+
+    // Initialize carousel after DOM is loaded
+    setTimeout(initGamesCarousel, 100);
 });

@@ -322,3 +322,68 @@ a.block {
 a.text-center {
     text-align: center;
 }
+
+/* Grid utilities */
+.justify-items-center {
+    justify-items: center;
+}
+
+/* Carousel Styles */
+#games-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 1rem 0.5rem;
+    gap: 1.5rem;
+}
+
+#games-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+#games-carousel article {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    #games-carousel article {
+        flex: 0 0 calc(50% - 1rem);
+    }
+}
+
+@media (min-width: 1024px) {
+    #games-carousel article {
+        flex: 0 0 calc(33.333% - 1rem);
+    }
+}
+
+/* Carousel indicators */
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #d1d5db;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dark .carousel-indicator {
+    background-color: #4b5563;
+}
+
+.carousel-indicator.active {
+    background-color: #5b057f;
+    width: 30px;
+    border-radius: 5px;
+}
+
+.carousel-indicator:hover {
+    background-color: #7c1a9e;
+}
